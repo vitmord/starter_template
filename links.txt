@@ -1,0 +1,47 @@
+Генерация svg спрайтов при помощи Gulp
+http://zalki-lab.ru/%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F-svg-%D1%81%D0%BF%D1%80%D0%B0%D0%B9%D1%82%D0%BE%D0%B2-%D0%BF%D1%80%D0%B8-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8-gulp/
+
+Создание SVG sprite с помощью gulp
+https://habr.com/ru/sandbox/125438/
+
+Как я использую SVG-спрайты
+https://habr.com/ru/post/272505/
+
+How we use SVG sprites (new way)
+http://glivera-team.github.io/svg/2019/03/15/svg-sprites-2.en.html
+
+jkphl /gulp-svg-sprite
+https://github.com/jkphl/gulp-svg-sprite
+
+Styling SVG <use> Content with CSS
+https://tympanus.net/codrops/2015/07/16/styling-svg-use-content-css/
+
+Символьный SVG-спрайт. Подробное руководство
+http://dreamhelg.ru/2017/02/symbol-svg-sprite-detail-guide/
+
+SVG Tutorial
+http://tutorials.jenkov.com/svg/svg-animation.html
+
+HTML и SVG: создаём интерактивную карту
+https://habr.com/ru/post/127994/
+
+Настройка Gulp Babel
+https://www.npmjs.com/package/gulp-babel
+https://babeljs.io/setup#installation
+https://only-to-top.ru/blog/tools/
+https://only-to-top.ru/blog/tools/2019-10-20-gulp-babel.html
+
+
+Visual Studio Code. Настройка и применение. Часть 1
+https://medium.com/@p1t1ch/visual-studio-code-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1-7f1a26806522
+
+https://code.visualstudio.com/docs/editor/userdefinedsnippets
+https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+
+Welcome to Touch Typing Study!
+https://www.typingstudy.com/
+
+Как вы размещаете свой сайт в Google App Engine?
+https://developer.mozilla.org/ru/docs/Learn/Common_questions/How_do_you_host_your_website_on_Google_App_Engine
+
+https://get.foundation/emails/email-templates.html

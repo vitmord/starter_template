@@ -13,8 +13,7 @@ const fileinclude = require("gulp-file-include");
 const del = require("del");
 const browserSync = require("browser-sync").create();
 
-const posthtml = require("gulp-posthtml");
-const attrsSorter = require('posthtml-attrs-sorter');
+const babel = require('gulp-babel');
 
 function style() {
     return gulp
@@ -55,6 +54,15 @@ function style() {
 function js() {
     return gulp
         .src("./src/js/**/*.js")
+        .pipe(plumber())
+        // Transpile the JS code using Babel's preset-env.
+        .pipe(babel({
+            presets: [
+                ['@babel/env', {
+                    modules: false
+                }]
+            ]
+        }))
         .pipe(concat("script.js"))
         .pipe(
             uglify({

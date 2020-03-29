@@ -15,6 +15,9 @@ const browserSync = require("browser-sync").create();
 
 const babel = require('gulp-babel');
 
+const imagemin = require('gulp-imagemin');
+const svgstore = require("gulp-svgstore");
+
 function style() {
     return gulp
         .src("./src/scss/**/*.scss")
@@ -91,9 +94,6 @@ function html() {
                 })
             })
         )
-        .pipe(posthtml([
-            attrsSorter()
-        ]))
         .pipe(
             fileinclude({
                 prefix: "@@"
@@ -101,6 +101,35 @@ function html() {
         )
         .pipe(gulp.dest("./build"));
 }
+
+function imgo() {
+    return gulp.src('./src/img/**/*.{png,jpg,JPG,svg}')
+        .pipe(imagemin([
+            imagemin.gifsicle({
+                interlaced: true
+            }),
+            imagemin.mozjpeg({
+                progressive: true
+            }),
+            imagemin.optipng({
+                optimizationLevel: 3
+            }),
+            imagemin.svgo()
+        ]))
+        .pipe(imagemin([
+            imagemin.svgo()
+        ]))
+        .pipe(gulp.dest('./build/img'));
+};
+
+function sprite() {
+    return gulp.src('./src/img/icons/*.svg')
+        .pipe(svgstore({
+            inlineSvg: true
+        }))
+        .pipe(rename('sprite.svg'))
+        .pipe(gulp.dest('./build/img'));
+};
 
 function watch() {
     browserSync.init({
@@ -112,27 +141,35 @@ function watch() {
     gulp.watch("./src/scss/**/*.scss", style);
     gulp.watch("./src/js/**/*.js", js).on("change", browserSync.reload);
     gulp.watch("./src/**/*.html", html).on("change", browserSync.reload);
+    gulp.watch("./src/img/**", imgo).on("change", browserSync.reload);
+    gulp.watch("./src/img/icons/**", sprite).on("change", browserSync.reload);
+    gulp.watch("./src/fonts/**/*.{woff,woff2}", copy).on("change", browserSync.reload);
+}
+
+function copy() {
+    return gulp.src([
+            './src/fonts/**/*.{woff,woff2}',
+            './src/img/**'
+        ], {
+            base: 'src'
+        })
+        .pipe(gulp.dest('build'))
 }
 
 function clean() {
     return del("build");
 }
 
-function htmlAttrsSorter() {
-    return gulp.src('./source/*.html')
-        .pipe(posthtml([
-            attrsSorter()
-        ]))
-        .pipe(gulp.dest('./source'));
-};
 
-const build = gulp.series(clean, style, js, htmlAttrsSorter, html);
+const build = gulp.series(clean, imgo, sprite, style, js, html);
 
 exports.style = style;
 exports.js = js;
 exports.html = html;
-exports.htmlAttrsSorter = htmlAttrsSorter;
+exports.imgo = imgo;
+exports.sprite = sprite;
 exports.watch = watch;
 exports.clean = clean;
+exports.copy = copy;
 
 exports.build = build;

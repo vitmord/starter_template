@@ -2,6 +2,7 @@ const gulp = require("gulp");
 
 const sass = require("gulp-sass");
 const autoprefixer = require("gulp-autoprefixer");
+const gcmq = require('gulp-group-css-media-queries');
 const sourcemaps = require("gulp-sourcemaps");
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
@@ -16,6 +17,7 @@ const browserSync = require("browser-sync").create();
 const babel = require('gulp-babel');
 
 const imagemin = require('gulp-imagemin');
+const webp = require("imagemin-webp");
 const svgstore = require("gulp-svgstore");
 
 function style() {
@@ -39,6 +41,8 @@ function style() {
                 cascade: true
             })
         )
+        .pipe(gcmq())
+        .pipe(gulp.dest("./build/css/"))
         .pipe(
             cleanCSS({
                 compatibility: "ie8"
@@ -104,6 +108,17 @@ function html() {
 
 function imgo() {
     return gulp.src('./src/img/**/*.{png,jpg,JPG,svg}')
+        .pipe(
+            imagemin(["*.png", "*.jpg"], "img", {
+                use: [
+                    webp({
+                        quality: 75
+                    })
+                ]
+            })
+        )
+        .pipe(gulp.dest('./build/img'))
+        .pipe(gulp.src('./src/img/**/*.{png,jpg,JPG,svg}'))
         .pipe(imagemin([
             imagemin.gifsicle({
                 interlaced: true

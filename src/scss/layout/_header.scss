@@ -1,4 +1,8 @@
 .header {
-    background-color: $color;
-    // font-size: 24px;
+  background-color: $color;
+
+  // font-size: 24px;
+  @media (max-width: 767px) {
+    background-color: gold;
+  }
 }
